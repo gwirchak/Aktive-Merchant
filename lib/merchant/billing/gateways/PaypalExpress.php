@@ -118,7 +118,8 @@ class Merchant_Billing_PaypalExpress extends Merchant_Billing_PaypalCommon
             'METHOD'               => 'SetExpressCheckout',
             'PAYMENTREQUEST_0_AMT' => $this->amount($money),
             'RETURNURL'            => $options['return_url'],
-            'CANCELURL'            => $options['cancel_return_url']
+            'CANCELURL'            => $options['cancel_return_url'],
+			'SOLUTIONTYPE'         => 'Sole'
         );
 
         $this->post = array_merge($this->post, $params, $this->getOptionalParams($options));
