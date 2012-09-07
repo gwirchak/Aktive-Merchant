@@ -92,7 +92,6 @@ class Merchant_Billing_AuthorizeNet extends Merchant_Billing_Gateway implements 
      */
     public function purchase($money, Merchant_Billing_CreditCard $creditcard, $options = array())
     {
-
         $this->add_invoice($options);
         $this->add_creditcard($creditcard);
         $this->add_address($options);
@@ -220,8 +219,8 @@ XML;
      */
     private function commit($action, $money, $parameters = array())
     {
-        $url = $this->is_test() ? self::LIVE_URL : self::TEST_URL;
-      
+        $url = !$this->is_test() ? self::LIVE_URL : self::TEST_URL;
+
         if ($action != 'VOID') {
           $parameters['amount'] = $this->amount($money);
         }
